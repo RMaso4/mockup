@@ -1,7 +1,16 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  images: {
+    domains: ['localhost', 'https://ybtlpepmbpfsyrekgznu.supabase.co'],
+  },
+  // Enable static exports if needed
+  // output: 'export',
+  // Disable server components for specific paths if needed
+  // experimental: {
+  //   serverComponentsExternalPackages: [],
+  // },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

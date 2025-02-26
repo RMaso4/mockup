@@ -1,0 +1,104 @@
+// This is your Prisma schema file
+// Learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Order {
+  id                      Int       @id @default(autoincrement())
+  project                 String?
+  verkoopOrder            String?   @map("verkoop_order")
+  pos                     Int?
+  aanmaakDatum            DateTime? @map("aanmaak_datum")
+  typeArtikel             String?   @map("type_artikel")
+  debiteurKlant           String?   @map("debiteur_klant")
+  materiaal               String?
+  kantenband              String?
+  kleur                   String?
+  hoogte                  Float?
+  dbWaarde                Float?    @map("db_waarde")
+  opmerking               String?
+  productieLeverDatum     DateTime? @map("productie_lever_datum")
+  startdatumAssemblage    DateTime? @map("startdatum_assemblage")
+  startDatumMachinale     DateTime? @map("start_datum_machinale")
+  brutoZagen              DateTime? @map("bruto_zagen")
+  pers                    DateTime?
+  nettoZagen              DateTime? @map("netto_zagen")
+  verkantlijmen           DateTime?
+  cncStartDatum           DateTime? @map("cnc_start_datum")
+  pmtStartDatum           DateTime? @map("pmt_start_datum")
+  lakkerijDatum           DateTime? @map("lakkerij_datum")
+  datumCoaten             DateTime? @map("datum_coaten")
+  m1Verkantlijmen         DateTime? @map("m1_verkantlijmen")
+  orderGereed             DateTime? @map("order_gereed")
+  inpak                   DateTime?
+  rail                    DateTime?
+  boards                  Int?
+  frames                  Int?
+  apTws                   Int?      @map("ap_tws")
+  wpFrame                 Int?      @map("wp_frame")
+  wpDwpPcBoards           Int?      @map("wp_dwp_pc_boards")
+  profielen               Int?
+  kokers                  Int?
+  lakken                  Boolean?
+  mon                     Int?
+  pho                     Int?
+  pro                     Int?
+  ap                      Int?
+  sp                      Int?
+  cp                      Int?
+  wp                      Int?
+  dwp                     Int?
+  pc                      Int?
+  pcp                     Int?
+  tot                     Int?
+  totaalBoards            Int?      @map("totaal_boards")
+  controleOrder           Boolean?  @map("controle_order")
+  popUpZaag               Boolean?  @map("pop_up_zaag")
+  popUpAssemblage         Boolean?  @map("pop_up_assemblage")
+  popUpCnc                Boolean?  @map("pop_up_cnc")
+  popUpCnc2               Boolean?  @map("pop_up_cnc2")
+  popUpVerkantlijmer      Boolean?  @map("pop_up_verkantlijmer")
+  popUpInpak              Boolean?  @map("pop_up_inpak")
+  popUpRail               Boolean?  @map("pop_up_rail")
+  popUpGroteZaag          Boolean?  @map("pop_up_grote_zaag")
+  popZaag2                Boolean?  @map("pop_zaag_2")
+  popHeftruck             Boolean?  @map("pop_heftruck")
+  inkoopordernummer       String?
+  gezPlanning             String?   @map("gez_planning")
+  slotje                  Boolean?
+
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+
+  // Relaties kunnen hier toegevoegd worden
+  // bijv. gebruiker die de order heeft aangemaakt, etc.
+
+  @@map("orders")
+}
+
+// Gebruikersmodel voor authenticatie en autorisatie
+model User {
+  id                Int       @id @default(autoincrement())
+  email             String    @unique
+  naam              String
+  wachtwoord        String
+  rol               Role      @default(MEDEWERKER)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@map("users")
+}
+
+enum Role {
+  ADMIN
+  PLANNER
+  PRODUCTIE
+  MEDEWERKER
+}

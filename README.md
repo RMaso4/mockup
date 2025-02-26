@@ -1,8 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Parthos Next.js Application
 
-## Getting Started
+A production-ready Next.js application with React, TypeScript, Tailwind CSS, Prisma ORM, and Supabase authentication.
 
-First, run the development server:
+## 🚀 Features
+
+- Next.js App Router
+- React 18 with TypeScript
+- Tailwind CSS for styling
+- Dark mode support with next-themes
+- Prisma ORM for database management
+- Supabase authentication
+- Responsive design
+- Type-safe components
+- ESLint configuration for best practices
+- Error boundaries for graceful error handling
+
+## 📋 Prerequisites
+
+- Node.js 18+ and npm/yarn/pnpm
+- PostgreSQL database (for Prisma)
+- Supabase account
+
+## 🛠️ Getting Started
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/parthos-app.git
+cd parthos-app
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn 
+# or
+pnpm install
+```
+
+3. Set up environment variables:
+
+```bash
+cp .env.example .env.local
+```
+
+Edit the `.env.local` file with your own credentials.
+
+4. Initialize Prisma:
+
+```bash
+npx prisma generate
+npx prisma migrate dev --name init
+```
+
+### Development
+
+Run the development server:
 
 ```bash
 npm run dev
@@ -10,27 +67,104 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+# or
+yarn build
+# or
+pnpm build
+```
 
-## Learn More
+### Running in Production
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run start
+# or
+yarn start
+# or
+pnpm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+parthos-app/
+├── prisma/               # Prisma schema and migrations
+├── public/               # Static assets
+├── src/
+│   ├── app/              # Next.js App Router components
+│   │   ├── api/          # API routes
+│   │   ├── (auth)/       # Auth-related routes (login, register)
+│   │   ├── dashboard/    # Dashboard routes
+│   │   ├── globals.css   # Global styles
+│   │   ├── layout.tsx    # Root layout
+│   │   └── page.tsx      # Home page
+│   ├── components/       # Reusable components
+│   │   ├── auth/         # Authentication components
+│   │   ├── ui/           # UI components
+│   │   └── ...
+│   └── lib/              # Utilities and helpers
+│       ├── prisma/       # Prisma client
+│       ├── supabase/     # Supabase client
+│       ├── constants.ts  # Application constants
+│       ├── types.ts      # TypeScript types
+│       └── utils.ts      # Utility functions
+├── .env.example          # Example environment variables
+├── .eslintrc.js          # ESLint configuration
+├── next.config.js        # Next.js configuration
+├── package.json          # Dependencies and scripts
+├── postcss.config.js     # PostCSS configuration
+├── tailwind.config.ts    # Tailwind CSS configuration
+└── tsconfig.json         # TypeScript configuration
+```
 
-## Deploy on Vercel
+## 🔧 Customization
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Styling
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The project uses Tailwind CSS for styling. Customize the theme in `tailwind.config.ts`.
+
+### Database Schema
+
+Update the Prisma schema in `prisma/schema.prisma` and run migrations:
+
+```bash
+npx prisma migrate dev --name your_migration_name
+```
+
+### Authentication
+
+The project uses Supabase for authentication. Configure your Supabase project settings in `.env.local`.
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+The easiest way to deploy your Next.js app is to use [Vercel](https://vercel.com):
+
+1. Push your code to a GitHub, GitLab, or Bitbucket repository
+2. Import your project into Vercel
+3. Set your environment variables
+4. Deploy
+
+### Other Platforms
+
+You can also deploy to other platforms like:
+
+- [Netlify](https://netlify.com)
+- [AWS Amplify](https://aws.amazon.com/amplify/)
+- [DigitalOcean App Platform](https://www.digitalocean.com/products/app-platform)
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
